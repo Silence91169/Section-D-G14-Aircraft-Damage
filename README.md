@@ -29,7 +29,7 @@ Pivot/
     Capstone_DVA - Pivot_Table_2.csv
 
 Images/
-    img1.png
+    igm1.png
     img2.png
     img3.png
 ```
@@ -94,7 +94,7 @@ CleanData/Capstone_DVA - Cleaned_Data.csv
 Peak month: **September (1490 incidents)**  
 Seasonal spike observed from July to October.
 
-![Monthly Trend](Images/img1.png)
+![Monthly Trend](Images/igm1.png)
 
 ---
 
