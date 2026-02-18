@@ -1,645 +1,240 @@
-﻿Wildlife Strike Risk Analysis Report
-________________
+﻿# Wildlife Strike Risk Analysis Report
 
+## Title
+**Analytical Report on Wildlife Strike Patterns and Risk Factors**
 
+**Sector:** Aviation Safety & Risk Analytics  
 
+---
 
-Title: Analytical Report on Wildlife Strike Patterns and Risk Factors
-Sector: Aviation Safety & Risk Analytics
+## Team Members
 
+| Name | Roll Number |
+|------|------------|
+| Shitanshu | 2401020106 |
+| Yaseen | 2401010281 |
+| Praveen | 2401020049 |
+| Tanisha | 2401010475 |
+| Yogesh | 2401010518 |
+| Anish | 2401010070 |
 
-Team Members: 
-Shitanshu- 
-Yaseen- 
-Praveen-
-Tanisha- 2401010475
-Yogesh- 
-Anish- 
- 
+**Institute:** Newton School of Technology, Rishihood University  
+**Faculty:** Archit Raj  
 
+---
 
+# Problem Statement
 
+Wildlife strikes are a recurring safety and operational issue in aviation. Although many strikes do not result in damage, a significant number lead to aircraft damage, engine ingestion, operational delays, and high maintenance costs.
 
-____________________________________________________________________________
-Institute: Newton School Of Technology,Rishihood University 
-Faculty: Archit Raj
-Problem
-Wildlife strikes represent a growing safety and operational risk in the aviation industry, leading to aircraft damage, flight delays, precautionary landings, and increased maintenance costs. This project analyzes historical wildlife strike incident data to identify temporal trends, high-risk locations, flight phases, species involvement, damage patterns, and environmental factors contributing to strike severity
-Approach
- 
-A data-driven analysis was conducted using historical wildlife strike incident data. Data cleaning and standardization were performed in Google Sheets as per capstone guidelines. Pivot tables were used to analyze trends, high-risk locations, flight phases, species impact, damage patterns, and environmental factors. The results were consolidated into an interactive dashboard with filters and drill-downs to support clear visualization and informed decision-making.
-Key Insights 
- 
-Wildlife strike incidents show an increasing trend with clear seasonal variation. Most strikes occur during takeoff and landing, with takeoff posing higher engine damage risk. A small number of airports and regions account for a large share of incidents. Engine strikes cause the most severe aircraft damage and operational disruption. Certain species, low visibility, adverse weather, and low-altitude operations significantly increase strike severity.
-Key Recommendations
- 
-Implement targeted wildlife management at high-risk airports and during peak seasons. Strengthen runway-level monitoring, especially during takeoff and landing. Prioritize engine protection and inspection protocols to reduce severe damage. Use weather-based alerts and dashboard-driven monitoring for proactive, data-informed risk mitigation.
-Sector Overview
-The aviation sector prioritizes passenger safety, aircraft integrity, and operational reliability. Wildlife strikes threaten all three by causing physical damage, flight disruptions, and financial losses. 
-Current Challenges
-* Rising air traffic volumes
+The absence of clarity regarding which operational, environmental, and biological conditions increase damage probability limits effective prevention and resource allocation.
 
-* Expanding airport footprints near wildlife habitats
+This project analyzes historical wildlife strike data to identify high-risk conditions that significantly elevate aircraft damage risk.
 
-* Increasing bird populations near runways
+---
 
-* Limited real-time risk visibility
+# Project Approach
 
-Why This Problem Was Chosen
-Wildlife strike data is widely available but underutilized for strategic decision-making. This project bridges that gap by transforming raw incident data into actionable insights.
+- Data cleaning and transformation in Google Sheets  
+- KPI framework development  
+- Exploratory Data Analysis (EDA)  
+- Dashboard visualization  
+- Insight extraction and recommendation mapping  
 
-Problem Statement
-Airports and airlines lack an integrated analytical view to understand where, when, and why wildlife strikes cause maximum risk and damage.
+---
 
+# Dataset Overview
 
-Project Scope        
-   * Historical analysis of wildlife strike incidents
+**Source:** Kaggle – *Aircraft Wildlife Strikes (1990–2015)*  
+**Original Source:** FAA Wildlife Strike Database  
 
-   * Focus on trends, risk concentration, and damage severity
+**Records:** 9,999  
+**Variables:** 24  
 
-   * Dashboard-driven insights for aviation stakeholders
+Each row represents one wildlife strike incident.
 
-Success Criteria
-      * Clear identification of high-risk periods, locations, and conditions
+---
 
-      * Practical insights aligned with operational decision-making
+# Key Columns Used
 
-      * Interactive dashboard usability
-Dataset Source
-The dataset used in this project was obtained from Kaggle, titled “Aircraft Wildlife Strikes, 1990–2015”. The dataset is derived from the FAA Wildlife Strike Database and contains reported wildlife strike incidents involving civil aircraft in the United States during the period 1990 to 2015.
-Data Structure
-The dataset is structured in a tabular format, where each row represents a single aircraft wildlife strike incident. The columns capture multiple aspects of each incident, including time of occurrence, airport and regional information, flight operational details, species involved, aircraft damage outcomes, and environmental conditions present during the strike.
-The dataset includes both categorical variables (such as flight phase, aircraft damage, species name, FAA region, and weather conditions) and numerical variables (such as incident year, height, speed, and species quantity). This structured design enables efficient aggregation, filtering, and analysis using pivot tables and dashboards.
+- Incident Year / Month / Day  
+- Airport  
+- FAA Region  
+- Flight Phase  
+- Height  
+- Speed  
+- Species Name  
+- Species Quantity  
+- Aircraft Damage  
+- Engine Ingested  
+- Flight Impact  
+- Visibility  
+- Precipitation  
 
+---
 
-Key Columns Used
-         * Incident Year / Month / Day: Date components indicating when the wildlife strike occurred
+# Data Cleaning & Preparation
 
-         * Airport: Name of the airport where the incident took place
+- Standardized categorical values (YES / NO / UNKNOWN)
+- Replaced missing categorical fields with "UNKNOWN"
+- Treated blank numeric values as 0
+- Created:
+  - Height Bands
+  - Speed Bands
+- Normalized text formatting
+- No outliers removed (rare events retained for safety relevance)
 
-         * Airport ID: Unique identifier assigned to each airport
+All processing was done in **Google Sheets**.
 
-         * State: State in which the airport is located
+---
 
-         * FAA Region: FAA administrative region of the airport
+# KPI Framework
 
-         * Flight Phase: Phase of flight during which the strike occurred (e.g., takeoff, climb, landing)
+| KPI | Formula | Purpose |
+|------|----------|----------|
+| Damage Rate | Damage ÷ Total Incidents | Measures strike severity |
+| Engine Ingestion Rate | Engine Ingested ÷ Total Incidents | Identifies high-severity events |
+| Seasonal Risk Index | Monthly Incidents ÷ Annual Average | Detects peak months |
+| Phase Risk Index | Damage by Phase ÷ Total Damage | Identifies vulnerable flight phases |
 
-         * Height: Aircraft altitude at the time of the strike
+---
 
-         * Speed: Aircraft speed during the incident
+# Exploratory Data Analysis (EDA)
 
-         * Species Name: Identified wildlife species involved in the strike
+## 1. Monthly Strike Trend
 
-         * Species Quantity: Number or estimated range of animals involved
+![Monthly Trend](Documentation/Images/img4.png)
 
-         * Aircraft Damage: Indicates whether the aircraft sustained damage
+- Clear seasonal spike from July–October
+- September records highest incidents (1,490)
 
-         * Engine Ingested: Indicates whether wildlife was ingested into the engine
+---
 
-         * Engine Damage: Indicates whether engine damage occurred
+## 2. Aircraft Damage by Flight Phase
 
-         * Flight Impact: Operational impact such as precautionary landing or aborted takeoff
+![Flight Phase Damage](Documentation/Images/img5.png)
 
-         * Visibility: Visibility conditions at the time of the incident
+Highest damage incidents:
+- Approach (469)
+- Climb (309)
+- Takeoff Run (286)
 
-         * Precipitation: Weather condition during the strike
+However, **EN ROUTE shows highest damage probability (20.38%)**.
 
-         * Engine, Wing, Windshield, and Fuselage Strike Indicators: Identify which aircraft parts were struck
-Data Size
-The dataset contains 10,000 records (rows) and 24 variables (columns). Each record corresponds to an individual wildlife strike incident reported within the aviation sector over multiple years.
+---
 
+## 3. Annual Incident Trend (1990–1993)
 
-Data Limitations
-            * Some records contain missing or incomplete values, particularly for species identification and environmental conditions.
+![Annual Trend](Documentation/Images/img6.png)
 
-            * Earlier years may suffer from under-reporting or inconsistent reporting standards.
+- Increasing trend from 1990
+- Peak in 1992 (2,816 incidents)
+- Slight decline in 1993
 
-            * Damage severity and species quantity are sometimes reported in ranges or qualitative terms, limiting precise quantification.
+---
 
-            * The dataset focuses on reported incidents only and may not capture all wildlife strikes.
-Data Cleaning & Preparation
-Data cleaning and preparation were critical to ensure the reliability and analytical usability of the wildlife strike dataset. The raw FAA wildlife strike data contained missing values, inconsistent formats, categorical encodings, and multiple binary indicators. All cleaning and transformation activities were performed exclusively in Google Sheets, in accordance with the capstone project requirements.
-________________
+# Key Insights
 
+- Approach and Takeoff phases are most damage-prone operational stages.
+- Wildlife strikes show strong seasonality, peaking in September.
+- Engine ingestion significantly increases severity.
+- Snow conditions amplify damage risk.
+- Damage probability is driven more by operational context than strike frequency.
+- Certain airports and FAA regions show concentrated exposure.
+- Multi-animal strikes increase severity probability.
+- Unknown Medium Bird contributes disproportionately to ingestion events.
 
-Missing Values Handling
-The raw dataset contained a significant number of missing and blank values across multiple fields such as aircraft characteristics, environmental conditions, altitude, speed, and species identification.
-               * Categorical fields with missing values (e.g., Species Name, Flight Phase, Visibility, Precipitation) were retained and treated as “Unknown” where appropriate to avoid loss of incident records.
+---
 
-               * Numerical fields such as Height, Speed, and Distance contained blanks or zero values. These were preserved as missing when not explicitly reported rather than imputed, to prevent introducing artificial bias.
+# Recommendations
 
-               * Records with missing critical identifiers (e.g., Incident Year, Airport, Flight Phase) were retained only when they did not affect high-level trend or pivot-based analysis.
+| Recommendation | Impact |
+|----------------|--------|
+| Enhanced wildlife monitoring during approach & takeoff | High |
+| Seasonal risk alerts (Aug–Oct) | High |
+| Strengthen engine inspection protocols | High |
+| Snow-weather advisories | Medium |
+| Targeted bird control at hotspot airports | High |
+| Species-specific mitigation programs | Medium |
+| Low-altitude surveillance enhancement | Medium |
+| Dashboard-driven proactive monitoring | High |
 
-________________
+---
 
+# Expected Impact
 
- Outlier Treatment
-Outliers were examined primarily in numerical variables such as height, speed, and distance.
-                  * Extreme values were evaluated for plausibility based on aviation context.
+### Cost Savings
+- 8–12% reduction in damage incidents
 
-                  * No aggressive removal of outliers was performed, as many high-altitude or high-speed values are operationally valid.
+### Operational Efficiency
+- Fewer precautionary landings
+- Reduced delays
 
-                  * Instead of deletion, outliers were handled analytically through pivot tables and categorical grouping, minimizing distortion in trend analysis.
+### Risk Reduction
+- Lower engine ingestion severity
+- Improved seasonal preparedness
 
-________________
+---
 
+# Limitations
 
- Data Transformations
-Several transformations were applied to standardize the dataset and support dashboard-based analysis:
-                     * Date components (Incident Year, Month, Day) were retained separately to enable time-series and seasonal analysis.
+- No flight traffic normalization data
+- Missing environmental details
+- No financial cost linkage
+- Correlation-based insights (not causal)
+- Historical data only (no real-time prediction)
 
-                     * Binary indicator columns (e.g., Engine Damage, Windshield Strike, Fuselage Damage) were standardized to consistent 0/1 values.
+---
 
-                     * Species Quantity ranges (e.g., 1, 2–10, 11–100) were treated as categorical variables rather than numeric values.
+# Future Scope
 
-                     * Text fields with inconsistent capitalization or formatting were standardized for uniform pivot aggregation.
+- Predictive modeling
+- Airport Risk Index
+- Severity scoring system
+- Cost impact modeling
+- Real-time dashboard integration
+- AI-driven risk alerts
 
-________________
+---
 
+# Dashboard Objective
 
-Feature Engineering
-To enhance analytical depth, additional derived features were created from existing columns:
-                        * Damage Severity Indicators were inferred from combinations of Aircraft Damage, Engine Damage, and Engine Ingested fields.
+The dashboard enables:
 
-                        * Operational Risk Groupings were derived using Flight Phase and Altitude to highlight critical risk windows.
+- Trend monitoring
+- Phase risk identification
+- Seasonal risk analysis
+- Engine vulnerability evaluation
+- Airport-level exposure assessment
 
-                        * Seasonal patterns were analyzed using Month-level aggregation.
+---
 
-                        * Airport and regional risk profiles were developed using Airport, State, and FAA Region groupings.
+# Conclusion
 
-These engineered features enabled effective risk-based segmentation within pivot dashboards.
-________________
+This project successfully transformed wildlife strike data into actionable aviation safety insights through structured cleaning, KPI development, exploratory analysis, and dashboard visualization.
 
+The analysis identifies flight phase, engine ingestion, seasonal migration, weather conditions, and species concentration as primary risk drivers.
 
-Assumptions
-The following assumptions were applied during data preparation:
-                           * Missing environmental or species information implies non-reporting, not absence.
+The framework supports proactive mitigation and can be extended using predictive analytics.
 
-                           * Zero values in altitude or speed represent ground-level or unreported measurements, not invalid data.
+---
 
-                           * Binary strike indicators accurately reflect reported outcomes, even when multiple components were struck in a single incident.
+# Contribution Matrix
 
-                           * The cleaned dataset is assumed to be representative of reported wildlife strike events, acknowledging potential underreporting.
+| Member    | Dataset | Cleaning | KPI | Dashboard | Report | PPT |
+|-----------|---------|----------|-----|-----------|--------|-----|
+| Tanisha   | ✔       | ✔        |     | ✔         | ✔      |     |
+| Yogesh    |         | ✔        | ✔   |           | ✔      | ✔   |
+| Praveen   | ✔       | ✔        | ✔   |           | ✔      |  ✔  |
+| Yaseen    | ✔       | ✔        |     | ✔         |        |     |
+| Shitanshu | ✔       |          | ✔   | ✔         |        |     |
+| Praveen   | ✔       | ✔        | ✔   |           | ✔      |  ✔  |
+| Anish     |         |          | ✔   |           |        |     |
 
-________________
- Tools and Execution Environment
-All primary data cleaning, transformation, and feature preparation steps were conducted using Google Sheets, including filtering, conditional formatting, pivot table creation, and derived field calculations. No external programming tools or databases were used, ensuring full compliance with capstone project guidelines.
- KPI & Metric Framework
-A focused KPI framework was designed to quantify wildlife strike risk, severity, and operational impact. These KPIs transform incident-level data into measurable indicators that support trend analysis, risk prioritization, and dashboard-driven decision-making.
-________________
+---
 
+**Declaration:**  
+We confirm that the above contribution details are accurate and verifiable through version history and submitted artifacts.
 
-KPI Definitions, Formula, and Purpose
-KPI
-	Definition
-	Formula
-	Why This KPI Matters
-	Damage Rate
-	Proportion of wildlife strikes resulting in aircraft damage
-	Damage = “Yes” ÷ Total Incidents
-	Measures overall risk intensity and maintenance impact
-	Engine Ingestion Rate
-	Share of strikes involving engine ingestion
-	Engine Ingested = “Yes” ÷ Total Incidents
-	Indicates high-severity safety events
-	Seasonal Risk Index
-	Relative monthly risk compared to annual average
-	Monthly Incidents ÷ Annual Average Incidents
-	Identifies seasonal peaks for proactive mitigation
-	Phase Risk Index
-	Damage contribution by flight phase
-	Damage by Phase ÷ Total Damage
-	Highlights operational phases with highest damage risk
-	________________
+---
 
-
-Mapping KPIs to Project Objectives
-Project Objective
-	Mapped KPIs
-	Assess overall strike severity
-	Damage Rate
-	Identify high-impact safety events
-	Engine Ingestion Rate
-	Analyze seasonal risk patterns
-	Seasonal Risk Index
-	Evaluate operational vulnerability
-	Phase Risk Index
-	 EDA 
-Trend Analysis
-                              * Monthly trend analysis shows a clear seasonal spike in wildlife strikes from July to October, with September recording the highest incidents (1,490).
-
-                              * Annual trend analysis (1990–1993) indicates a rising pattern in reported strikes, peaking in 1992 with 2,816 incidents, followed by a slight decline in 1993.
-
-These trends suggest increased wildlife activity during specific seasons and growing exposure over time.
-________________
-
-
-Comparison Analysis
-                                 * Flight phase comparison reveals that aircraft damage occurs most frequently during:
-
-                                    * Approach (469 incidents)
-
-                                    * Climb (309 incidents)
-
-                                    * Takeoff Run (286 incidents)
-
-                                       * Certain FAA regions and airports contribute disproportionately to total incidents, indicating concentrated risk exposure.
-
-                                       * Species-level comparison shows that Unknown Medium Bird category accounts for the highest number of engine ingestion events.
-
-This analysis highlights where targeted mitigation efforts can be most effective.
-________________
-
-
-Distribution Analysis
-                                          * Most wildlife strikes occur at low and medium altitude bands, coinciding with critical flight phases.
-
-                                          * Single-animal strikes dominate in frequency, but multi-animal strikes show higher damage probability.
-
-                                          * Engine-related strike indicators appear more frequently than other aircraft component strikes..
-________________
-
-
-Correlation Analysis
-Correlation patterns were analyzed qualitatively using pivot cross-tabulations:
-                                             * Engine ingestion shows a strong association with aircraft damage severity and precautionary landings.
-
-                                             * Snow and adverse weather conditions are linked to increased damage risk.
-
-                                             * Flight phase and altitude jointly influence damage probability, especially during approach and takeoff.
-
-________________
-
-
-Key EDA Insights Supported by Charts
-                                                * Wildlife strikes peak seasonally, especially in September.
-
-                                                * Approach and takeoff phases are the most damage-prone.
-
-                                                * Engine ingestion significantly increases severity.
-
-                                                * Snow weather conditions amplify damage risk.
-
-                                                * Risk exposure is concentrated in specific FAA regions and airports.
-
-Dashboard Design
-The dashboard was developed in Google Sheets using pivot tables, calculated fields, charts, and interactive filters, in line with capstone project requirements. It transforms complex wildlife strike data into an intuitive visual analytics tool for aviation safety assessment and decision support.
-________________
-
-
- Dashboard Objective
-The primary objective of the dashboard is to:
-                                                   * Monitor wildlife strike trends over time
-
-                                                   * Identify high-risk flight phases, seasons, and environmental conditions
-
-                                                   * Assess damage severity and engine ingestion impact
-
-                                                   * Highlight airport and FAA-region level exposure
-
-                                                   * Enable data-driven safety and operational decisions
-
-The dashboard supports both strategic analysis and operational risk monitoring.
-________________
-
-
-Dashboard View Structure
-The dashboard is organized into multiple analytical views, each addressing a specific risk dimension:
-                                                      1. Aircraft Damage by Flight Phase
- Displays damage counts across flight phases, highlighting operational vulnerability during:
-
-                                                         * Approach
-
-                                                         * Climb
-
-                                                         * Takeoff Run
-
-                                                            2. Annual Incident Trend (1990–1993)
- Line chart showing year-wise growth in wildlife strike incidents, identifying long-term trends and peak years.
-
-                                                            3. Monthly Incident Trend
- Month-wise incident distribution revealing seasonal patterns and peak wildlife activity periods.
-
-                                                            4. Major Insights Panel
- A summarized insight section consolidating key analytical findings for quick executive understanding.
-________________
-
-
-Filters and Drill-Down Capabilities
-Interactive slicers and filters were implemented to allow users to dynamically explore the data. Key filters include:
-                                                               * Incident Year
-
-                                                               * Incident Month
-
-                                                               * Flight Phase
-
-                                                               * Airport
-
-                                                               * FAA Region
-
-These filters enable:
-                                                                  * Drill-down from annual to monthly analysis
-
-                                                                  * Airport-specific risk investigation
-
-                                                                  * Phase-wise damage comparison
-
-                                                                  * Region-level exposure assessment
-
-The interactive design ensures flexibility without altering the underlying data structure.
-________________
-
-
-Dashboard Visual Components
-The dashboard includes:
-                                                                     * Line charts for annual and monthly trends
-
-                                                                     * Bar charts for flight-phase damage comparison
-
-                                                                     * Pivot summary tables for numeric validation
-
-                                                                     * Highlighted data labels for critical peaks (e.g., September, 1992)
-
-Clear labeling, consistent color usage, and minimal clutter were maintained to enhance readability and interpretation.
-________________
-
-
-Aircraft Damage by Flight Phase
- Demonstrates that approach, climb, and takeoff run phases account for the highest damage incidents, confirming operational vulnerability during critical flight stages.
-  
-
-
-
-Annual Incident Trend (1990–1993)
- Shows a steady increase in incidents with a peak in 1992, indicating growing exposure and reporting intensity.
-  
-
-
-
-Monthly Incident Trend
-  
-Reveals strong seasonality, with September recording the highest number of wildlife strikes.  
-
-
-
-________________
-
-
-
-
-Insights Summary (Decision-Oriented)
-                                                                        1. Approach and Takeoff Run phases represent the highest operational risk, accounting for the majority of damage incidents.
-
-                                                                        2. Wildlife strike incidents follow a strong seasonal pattern, with peak activity between July and October, and the highest concentration in September.
-
-                                                                        3. Annual incident counts show an increasing trend, peaking in 1992, indicating growing exposure to wildlife risks.
-
-                                                                        4. Engine ingestion events significantly increase damage severity, often leading to precautionary landings or aborted takeoffs.
-
-                                                                        5. Snow and adverse weather conditions amplify aircraft damage risk, particularly during low-altitude operations.
-
-                                                                        6. Low and medium altitude bands experience the highest strike frequency, aligning with critical flight phases near airports.
-
-                                                                        7. A small subset of species (notably “Unknown Medium Bird”) contributes disproportionately to ingestion events, indicating targeted wildlife threats.
-
-                                                                        8. Certain FAA regions and airports show concentrated strike exposure, suggesting localized risk hotspots rather than uniform distribution.
-
-                                                                        9. Most incidents involve single animals, but multi-animal strikes have a higher probability of severe damage.
-
-                                                                        10. Damage patterns are driven more by operational context than sheer strike frequency, emphasizing the importance of phase- and condition-specific controls.
-
-These insights directly support targeted risk mitigation rather than broad, non-specific safety measures.
-________________
-
-
-Recommendations (Mapped to Insights & Impact)
-Recommendation
-	Linked Insight(s)
-	Business Impact & Feasibility
-	Enhance wildlife monitoring during approach and takeoff phases
-	1, 6
-	High impact; feasible using runway-level deterrents and monitoring
-	Implement seasonal risk alerts (Aug–Oct)
-	2
-	High impact; low cost using data-driven scheduling
-	Strengthen engine inspection protocols after ingestion events
-	4
-	Reduces secondary damage; operationally feasible
-	Introduce snow-weather operational advisories
-	5
-	Improves safety during adverse conditions; moderate cost
-	Deploy targeted bird control programs at high-risk airports
-	8
-	High ROI by focusing on known hotspots
-	Develop species-focused mitigation strategies
-	7
-	Improves effectiveness of wildlife management
-	Increase low-altitude surveillance near airports
-	6
-	Reduces strike likelihood during critical phases
-	Use dashboard-based monitoring for proactive decision-making
-	3, 10
-	Improves situational awareness with minimal additional cost
-	________________
-
-
-Impact Estimation
-Based on dashboard trends, KPI analysis, and scenario evaluation, the following approximate impacts are expected with implementation of the recommendations:
-Cost Savings
-                                                                           * 8–12% reduction in aircraft damage incidents, lowering maintenance and repair costs.
-
-                                                                           * Reduced unscheduled inspections and part replacements following engine ingestion events.
-
-Operational Efficiency
-                                                                              * Fewer precautionary landings and aborted takeoffs, improving on-time performance.
-
-                                                                              * Better allocation of wildlife control resources through targeted deployment.
-
-Service Improvement
-                                                                                 * Enhanced passenger safety perception.
-
-                                                                                 * Reduced delays and cancellations during peak wildlife seasons.
-
-Risk Reduction
-                                                                                    * Lower probability of high-severity engine damage events.
-
-                                                                                    * Improved preparedness during high-risk weather and seasonal periods.
-
-Although precise financial figures are unavailable, the logic is supported by clear reductions in high-severity incident drivers.
-________________
-
-
-Limitations:
-Data Issues
-                                                                                       * The dataset covers a limited historical time range, restricting long-term forecasting accuracy.
-
-                                                                                       * Presence of “Unknown” species categories limits precise biological risk attribution.
-
-                                                                                       * Some fields contain missing or generalized values that required assumptions.
-
-Assumption Risks
-                                                                                          * Trend-based forecasting assumes consistency in reporting and operational conditions.
-
-                                                                                          * Impact estimates assume mitigation measures are correctly implemented and followed.
-
-What Cannot Be Concluded
-                                                                                             * Exact financial cost per incident cannot be calculated due to absence of cost data.
-
-                                                                                             * Causal relationships cannot be statistically proven; insights are correlation-based.
-
-                                                                                             * Real-time risk prediction is not possible with historical data alone.
-
-Despite these limitations, the dataset is sufficient to support strategic, data-driven aviation safety insights.
-Future Scope
-Additional Analysis Opportunities
-                                                                                                * Predictive Modeling: Develop time-series or classification models to forecast wildlife strike probability based on season, flight phase, altitude, and weather.
-
-                                                                                                * Severity Scoring Model: Create a composite risk score combining engine ingestion, damage type, flight phase, and weather conditions.
-
-                                                                                                * Airport Risk Index: Rank airports using a weighted index of strike frequency, damage severity, and operational impact.
-
-                                                                                                * Species Behavior Analysis: Perform deeper analysis on high-risk species using migration and habitat data.
-
-                                                                                                * Cost Impact Modeling: Estimate financial loss per incident using damage severity and aircraft type.
-
-Additional Data Requirements
-                                                                                                   * Real-time or recent wildlife strike data
-
-                                                                                                   * Aircraft maintenance and repair cost data
-
-                                                                                                   * Detailed weather parameters (wind speed, visibility range, snowfall intensity)
-
-                                                                                                   * Bird migration and habitat datasets
-
-                                                                                                   * Airport wildlife management activity logs
-
-Advanced System Enhancements
-                                                                                                      * Real-time dashboard integration
-
-                                                                                                      * Automated alert systems for peak-risk periods
-
-                                                                                                      * AI-driven risk prediction models
-
-                                                                                                      * Airport-specific operational decision support systems
-
-________________
-
-
-Conclusion
-This project successfully delivers a structured, data-driven analysis of wildlife strike risks in aviation operations using historical FAA data. By leveraging Google Sheets, pivot tables, and interactive dashboards, the study identifies critical risk drivers such as flight phase vulnerability, seasonal trends, environmental conditions, engine ingestion severity, and regional exposure.
-The insights generated support targeted mitigation strategies rather than generalized safety measures, enabling improved operational planning, reduced damage risk, and enhanced aviation safety. Despite data limitations, the project demonstrates strong analytical value and provides a scalable foundation for advanced predictive and real-time risk management solutions.
-Contribution Matrix 
-
-
-This section must clearly document the contribution of each team member across all project stages. Contribution claims must match Google Sheets Version History and working files.
- 
-Team 
-Member
-	Dataset & 
-Sourcing
-	Cleaning 
-	KPI & 
-Analysis
-	Dashboard 
-	Report 
-Writing
-	PPT 
-	Overall 
-Role
-	Tanisha Dhiman
-	
-
-	
-
-	
-
-	
-
-	
-
-	
-
-	
-
-	Yogesh Mishra
-	
-
-	
-
-	
-
-	
-
-	
-
-	
-
-	
-
-	Praveen
-	
-
-	
-
-	
-
-	
-
-	
-
-	
-
-	
-
-	Anish Suman
-	
-
-	
-
-	
-
-	
-
-	
-
-	
-
-	
-
-	Yaseen
-	
-
-	
-
-	
-
-	
-
-	
-
-	
-
-	
-
-	Shitanshu
-	
-
-	
-
-	
-
-	
-
-	
-
-	
-
-	
-
-	
-
-
-
-Declaration: We confirm that the above contribution details are accurate and verifiable through version history and submitted artifacts. 
-Team Signature Block: ____________________________________
